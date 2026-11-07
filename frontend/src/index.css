@@ -56,3 +56,62 @@ button:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .muted { color: #6b7280; margin: 0; font-size: 14px; }
 .error { background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 8px; font-size: 14px; }
+
+select, textarea {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: white;
+}
+
+.row { display: flex; gap: 8px; align-items: center; }
+.row > * { flex: 1; }
+.topbar .row > * { flex: none; }
+
+button.secondary { background: #e5e7eb; color: #111827; }
+button.danger { background: #dc2626; }
+button.small { padding: 6px 10px; font-size: 13px; }
+
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+.stat { background: white; padding: 14px; border-radius: 10px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.stat-number { font-size: 26px; font-weight: 700; }
+
+.toolbar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.toolbar input { flex: 1; min-width: 200px; }
+
+.list { display: flex; flex-direction: column; gap: 10px; }
+.item {
+  background: white; border-radius: 10px; padding: 16px;
+  display: flex; justify-content: space-between; gap: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.item-title { font-weight: 600; font-size: 16px; }
+.item-side { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.item-side .row > * { flex: none; }
+.notes { margin-top: 6px; font-size: 14px; color: #374151; }
+.item a { font-size: 14px; }
+
+.badge { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge.WISHLIST { background: #e5e7eb; color: #374151; }
+.badge.APPLIED { background: #dbeafe; color: #1d4ed8; }
+.badge.INTERVIEW { background: #fef3c7; color: #b45309; }
+.badge.OFFER { background: #dcfce7; color: #15803d; }
+.badge.REJECTED { background: #fee2e2; color: #b91c1c; }
+
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.modal {
+  background: white; padding: 24px; border-radius: 12px; width: 460px; max-width: 100%;
+  display: flex; flex-direction: column; gap: 12px; max-height: 90vh; overflow-y: auto;
+}
+.modal h2 { margin: 0; }
+
+@media (max-width: 600px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .item { flex-direction: column; }
+  .item-side { align-items: flex-start; }
+}
