@@ -96,7 +96,9 @@ export default function Dashboard() {
 
       <div className="stats">
         {STATUSES.map((s) => (
-          <div key={s} className="stat">
+          <div key={s} className={`stat ${statusFilter === s ? 'active' : ''}`}
+           onClick={() => setStatusFilter(statusFilter === s ? 'ALL' : s)}
+>
             <div className="stat-number">{counts[s]}</div>
             <div className="muted">{STATUS_LABELS[s]}</div>
           </div>
