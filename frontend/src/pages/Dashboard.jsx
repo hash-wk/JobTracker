@@ -1,12 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import api from '../api';
-import { useAuth } from '../context/AuthContext';
 import ApplicationForm from '../components/ApplicationForm';
 import { STATUSES, STATUS_LABELS } from '../constants';
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
-
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -85,20 +82,14 @@ export default function Dashboard() {
   }, [applications, search, statusFilter, sort]);
 
   return (
-    <div className="container">
-      <header className="topbar">
-        <h2>JobTrackr</h2>
-        <div className="row">
-          <span className="muted">Hi, {user.name}</span>
-          <button className="secondary" onClick={logout}>Logout</button>
-        </div>
-      </header>
-
+    <div>
       <div className="stats">
         {STATUSES.map((s) => (
-          <div key={s} className={`stat ${statusFilter === s ? 'active' : ''}`}
-           onClick={() => setStatusFilter(statusFilter === s ? 'ALL' : s)}
->
+          <div
+            key={s}
+            className={`stat ${statusFilter === s ? 'active' : ''}`}
+            onClick={() => setStatusFilter(statusFilter === s ? 'ALL' : s)}
+          >
             <div className="stat-number">{counts[s]}</div>
             <div className="muted">{STATUS_LABELS[s]}</div>
           </div>
