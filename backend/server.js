@@ -6,8 +6,7 @@ const authRoutes = require('./routes/auth');
 const applicationRoutes = require('./routes/applications');
 
 const app = express();
-const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173').split(',');
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
