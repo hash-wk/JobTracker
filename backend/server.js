@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const prisma = require('./db');
 const authRoutes = require('./routes/auth');
 const applicationRoutes = require('./routes/applications');
 const statsRoutes = require('./routes/stats');
@@ -18,16 +17,6 @@ app.use('/api/interviews', interviewRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
-});
-
-app.get('/api/db-test', async (req, res) => {
-  try {
-    const count = await prisma.user.count();
-    res.json({ connected: true, users: count });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ connected: false });
-  }
 });
 
 const PORT = process.env.PORT || 5000;
