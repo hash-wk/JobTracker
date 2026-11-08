@@ -423,3 +423,56 @@ button.small { padding: 7px 12px; font-size: 13px; border-radius: 10px; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
   .charts { grid-template-columns: 1fr; }
 }
+
+/* ---------- Interviews ---------- */
+.page-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.page-head h3 { margin: 0; font-size: 20px; color: var(--blush); }
+
+.interviews-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+
+.calendar, .upcoming {
+  padding: 20px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  animation: fadeUp 0.5s ease both;
+}
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.cal-head h3 { margin: 0; font-size: 18px; color: var(--blush); }
+
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.cal-weekday { text-align: center; padding-bottom: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--muted); }
+.cal-cell {
+  min-height: 92px; padding: 6px; overflow: hidden; cursor: pointer;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid transparent; border-radius: 10px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cal-cell:hover { border-color: var(--rose); background: rgba(255, 255, 255, 0.08); }
+.cal-cell.empty { background: transparent; cursor: default; }
+.cal-cell.empty:hover { border-color: transparent; background: transparent; }
+.cal-cell.today { border-color: var(--rose); box-shadow: inset 0 0 0 1px rgba(184, 84, 106, 0.4); }
+.cal-num { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.cal-cell.today .cal-num { color: var(--blush); }
+
+.chip {
+  margin-bottom: 3px; padding: 3px 6px; font-size: 11px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: #fcd34d; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 6px; transition: filter 0.2s;
+}
+.chip:hover { filter: brightness(1.25); }
+
+.upcoming h3 { margin: 0 0 14px; font-size: 18px; color: var(--blush); }
+.up-item {
+  margin-bottom: 12px; padding: 12px 14px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.up-item:hover { border-color: var(--rose); transform: translateY(-2px); }
+.up-date { font-size: 12px; font-weight: 600; color: var(--rose); }
+.up-title { margin: 2px 0; font-weight: 600; }
+.up-item a { display: inline-block; margin-top: 6px; font-size: 13px; color: var(--rose); text-decoration: none; }
+.up-item a:hover { color: var(--blush); }
+
+@media (max-width: 900px) {
+  .interviews-layout { grid-template-columns: 1fr; }
+  .cal-cell { min-height: 64px; }
+}

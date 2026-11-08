@@ -40,6 +40,7 @@ model Application {
   updatedAt   DateTime  @updatedAt @map("updated_at")
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   history     StatusHistory[]
+  interviews  Interview[]
 
   @@map("applications")
 }
@@ -53,4 +54,17 @@ model StatusHistory {
   application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 
   @@map("status_history")
+}
+
+model Interview {
+  id            Int         @id @default(autoincrement())
+  applicationId Int         @map("application_id")
+  type          String
+  dateTime      DateTime    @map("date_time")
+  location      String?
+  notes         String?
+  createdAt     DateTime    @default(now()) @map("created_at")
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@map("interviews")
 }

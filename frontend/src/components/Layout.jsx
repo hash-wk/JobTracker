@@ -12,6 +12,7 @@ export default function Layout() {
           <NavLink to="/" end>List</NavLink>
           <NavLink to="/board">Board</NavLink>
           <NavLink to="/analytics">Analytics</NavLink>
+          <NavLink to="/interviews">Interviews</NavLink>
         </nav>
         <div className="row">
           <span className="muted">Hi, {user.name}</span>

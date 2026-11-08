@@ -7,3 +7,12 @@ export const STATUS_LABELS = {
   OFFER: 'Offer',
   REJECTED: 'Rejected',
 };
+
+export const INTERVIEW_TYPES = [
+  'Phone screen',
+  'Online test',
+  'Technical',
+  'HR',
+  'On-site',
+  'Other',
+];

@@ -6,6 +6,7 @@ import Board from './pages/Board';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Analytics from './pages/Analytics';
+import Interviews from './pages/Interviews';
 
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/board" element={<Board />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/applications/:id" element={<ApplicationDetail />} />
+        <Route path="/interviews" element={<Interviews />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
