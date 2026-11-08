@@ -4,6 +4,7 @@ require('dotenv').config();
 const prisma = require('./db');
 const authRoutes = require('./routes/auth');
 const applicationRoutes = require('./routes/applications');
+const statsRoutes = require('./routes/stats');
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/stats', statsRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

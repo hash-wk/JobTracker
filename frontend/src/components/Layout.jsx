@@ -7,10 +7,11 @@ export default function Layout() {
   return (
     <div className="container">
       <header className="topbar">
-        <h2>JobTrackr</h2>
+        <h2>JobTracker</h2>
         <nav className="nav">
           <NavLink to="/" end>List</NavLink>
           <NavLink to="/board">Board</NavLink>
+          <NavLink to="/analytics">Analytics</NavLink>
         </nav>
         <div className="row">
           <span className="muted">Hi, {user.name}</span>

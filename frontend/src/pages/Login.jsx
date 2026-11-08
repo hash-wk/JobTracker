@@ -34,7 +34,7 @@ export default function Login() {
   return (
     <div className="auth-page">
       <form className="card" onSubmit={handleSubmit}>
-        <h1>JobTrackr</h1>
+        <h1>JobTracker</h1>
         <p className="muted">
           {isRegister ? 'Create your account' : 'Log in to your account'}
         </p>
