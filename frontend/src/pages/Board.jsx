@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import api from '../api';
@@ -89,7 +90,7 @@ export default function Board() {
                               setShowForm(true);
                             }}
                           >
-                            <div className="kcard-title">{a.position}</div>
+                            <Link to={`/applications/${a.id}`} className="kcard-title">{a.position}</Link>
                             <div className="muted">{a.company}</div>
                             {a.appliedDate && (
                               <div className="kcard-date">

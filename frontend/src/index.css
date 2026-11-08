@@ -51,11 +51,30 @@ body {
 
 /* ---------- Login / Register ---------- */
 .auth-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  overflow: hidden;
+}
+
+/* Background photo with a slow zoom */
+.auth-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(26, 10, 15, 0.55), rgba(26, 10, 15, 0.8)),
+    url('/login-bg.jpg') center / cover no-repeat;
+  animation: slowZoom 25s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
 }
 
 .card {
@@ -334,4 +353,49 @@ button.small { padding: 7px 12px; font-size: 13px; border-radius: 10px; }
 
 @media (max-width: 640px) {
   .topbar { flex-wrap: wrap; gap: 12px; }
+}
+
+/* ---------- Detail page ---------- */
+.item a.item-title, .kcard a.kcard-title { display: block; margin: 0; color: var(--text); text-decoration: none; font-size: inherit; }
+.item a.item-title { font-weight: 600; font-size: 17px; }
+.item a.item-title:hover, .kcard a.kcard-title:hover { color: var(--rose); }
+
+.detail { max-width: 760px; margin: 0 auto; }
+.back-link { display: inline-block; margin-bottom: 16px; color: var(--rose); text-decoration: none; font-weight: 600; font-size: 14px; }
+.back-link:hover { color: var(--blush); }
+
+.detail-card {
+  margin-bottom: 18px; padding: 26px 28px;
+  background: var(--glass); border: 1px solid var(--border); border-radius: 20px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  animation: fadeUp 0.5s ease both;
+}
+.detail-card h1 { margin: 0 0 4px; font-size: 26px; }
+.detail-card h2 { margin: 0 0 18px; font-size: 18px; color: var(--blush); }
+.detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 22px; }
+.detail-company { font-size: 16px; }
+.detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 22px; }
+.label { margin-bottom: 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+.detail-notes { margin: 0 0 22px; white-space: pre-wrap; color: var(--blush); }
+.detail-actions .secondary, .detail-actions .danger { flex: none; }
+.detail-actions { justify-content: flex-start; }
+
+/* ---------- Timeline ---------- */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 6px; }
+.timeline li { position: relative; display: flex; gap: 16px; padding-bottom: 22px; }
+.timeline li:not(:last-child)::before {
+  content: ''; position: absolute; left: 6px; top: 18px; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.timeline li:last-child { padding-bottom: 0; }
+.dot { flex: none; width: 14px; height: 14px; margin-top: 4px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 4px rgba(184, 84, 106, 0.2); }
+.dot.WISHLIST  { background: var(--blush); }
+.dot.APPLIED   { background: #ff9fb3; }
+.dot.INTERVIEW { background: #fcd34d; }
+.dot.OFFER     { background: #86efac; }
+.dot.REJECTED  { background: #fca5a5; }
+.timeline-title { font-weight: 600; }
+
+@media (max-width: 640px) {
+  .detail-grid { grid-template-columns: 1fr; }
 }

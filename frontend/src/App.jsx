@@ -1,9 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import ApplicationDetail from './pages/ApplicationDetail';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Board from './pages/Board';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
+
 
 export default function App() {
   return (
@@ -18,6 +20,7 @@ export default function App() {
       >
         <Route path="/" element={<Dashboard />} />
         <Route path="/board" element={<Board />} />
+        <Route path="/applications/:id" element={<ApplicationDetail />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

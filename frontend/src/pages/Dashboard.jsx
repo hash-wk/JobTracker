@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../api';
 import ApplicationForm from '../components/ApplicationForm';
 import { STATUSES, STATUS_LABELS } from '../constants';
@@ -130,7 +131,7 @@ export default function Dashboard() {
         {visible.map((a) => (
           <div key={a.id} className="item">
             <div className="item-main">
-              <div className="item-title">{a.position}</div>
+              <Link to={`/applications/${a.id}`} className="item-title">{a.position}</Link>
               <div className="muted">
                 {a.company}
                 {a.location ? ` · ${a.location}` : ''}

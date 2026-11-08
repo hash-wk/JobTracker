@@ -39,6 +39,18 @@ model Application {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  history     StatusHistory[]
 
   @@map("applications")
+}
+
+model StatusHistory {
+  id            Int         @id @default(autoincrement())
+  applicationId Int         @map("application_id")
+  oldStatus     Status?     @map("old_status")
+  newStatus     Status      @map("new_status")
+  changedAt     DateTime    @default(now()) @map("changed_at")
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@map("status_history")
 }

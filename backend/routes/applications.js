@@ -33,6 +33,28 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/applications/:id  (one application with its history)
+router.get('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id)) {
+      return res.status(400).json({ message: 'Invalid id' });
+    }
+
+    const application = await prisma.application.findFirst({
+      where: { id, userId: req.userId },
+      include: { history: { orderBy: { changedAt: 'desc' } } },
+    });
+    if (!application) {
+      return res.status(404).json({ message: 'Application not found' });
+    }
+    res.json(application);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // POST /api/applications
 router.post('/', async (req, res) => {
   try {
@@ -48,16 +70,19 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Invalid status' });
     }
 
+    const finalStatus = status || 'WISHLIST';
+
     const application = await prisma.application.create({
       data: {
         userId: req.userId,
         company,
         position,
         jobUrl,
-        status,
+        status: finalStatus,
         appliedDate: appliedDate ? new Date(appliedDate) : null,
         location,
         notes,
+        history: { create: { newStatus: finalStatus } },
       },
     });
     res.status(201).json(application);
@@ -84,6 +109,8 @@ router.put('/:id', async (req, res) => {
       return res.status(400).json({ message: 'Invalid status' });
     }
 
+    const statusChanged = status && status !== existing.status;
+
     const updated = await prisma.application.update({
       where: { id },
       data: {
@@ -94,6 +121,9 @@ router.put('/:id', async (req, res) => {
         appliedDate: appliedDate ? new Date(appliedDate) : undefined,
         location,
         notes,
+        history: statusChanged
+          ? { create: { oldStatus: existing.status, newStatus: status } }
+          : undefined,
       },
     });
     res.json(updated);
